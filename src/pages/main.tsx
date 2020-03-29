@@ -181,20 +181,15 @@ export default function Dashboard() {
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
-					<Grid container spacing={3}>
-						{/* Chart */}
+					<Grid container spacing={1}>
 						<Grid item xs={12} md={8} lg={9}>
-							임시 채팅방 페이지 바로가기
-							<a href="https://metafor.kr/">metafor.kr</a>
-							<Paper className={fixedHeightPaper}></Paper>
+							<Paper className={fixedHeightPaper}>
+								임시 채팅방 페이지 바로가기
+								<a href="https://metafor.kr/">metafor.kr</a>
+							</Paper>
 						</Grid>
-						{/* Recent Deposits */}
 						<Grid item xs={12} md={4} lg={3}>
 							<Paper className={fixedHeightPaper}></Paper>
-						</Grid>
-						{/* Recent Orders */}
-						<Grid item xs={12}>
-							<Paper className={classes.paper}></Paper>
 						</Grid>
 					</Grid>
 					<Box pt={4}>

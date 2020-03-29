@@ -1,9 +1,17 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Main from "./main";
+import Main from "./pages/main";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { Route } from "react-router-dom";
 
-export default function App() {
-	return <Main></Main>;
-}
+const App = () => {
+	return (
+		<>
+			<Route component={Main} path={"/"} exact />
+			<Route component={Login} path={"/login"} />
+			<Route component={Register} path={"/register"} />
+		</>
+	);
+};
+
+export default App;
