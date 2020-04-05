@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,6 +48,53 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
 	const classes = useStyles();
+	const [id, setId] = useState("");
+	const [nick, setNick] = useState("");
+	const [password, setPassword] = useState("");
+	const [passwordCheck, setPasswordCheck] = useState("");
+	const [term, setTerm] = useState(false);
+	const [passwordError, setPasswordError] = useState(false);
+	const [termError, setTermError] = useState(false);
+
+	const onSubmit = (e: any) => {
+		e.preventDefault();
+		/**검증 로직 만들기
+		 * 1. 비밀번호와 비밀번호 체크가 다를 경우를 검증한다
+		 * 2. 약관 동의를 확인한다.
+		 */
+		if (password !== passwordCheck) {
+			return setPasswordError(true);
+		}
+		if (!term) {
+			return setTermError(true);
+		}
+		console.log({
+			id,
+			nick,
+			password,
+			passwordCheck,
+			term
+		});
+	};
+	const onChangeId = (e: any) => {
+		setId(e.target.value);
+	};
+	const onChangeNick = (e: any) => {
+		setNick(e.target.value);
+	};
+	const onChangePassword = (e: any) => {
+		setPassword(e.target.value);
+	};
+	const onChangePasswordChk = (e: any) => {
+		//비밀번호를 입력할때마다 password 를 검증하는 함수
+		setPasswordError(e.target.value !== password);
+		setPasswordCheck(e.target.value);
+	};
+	const onChangeTerm = (e: any) => {
+		//체크박스 초기화
+		setTermError(false);
+		setTerm(e.target.checked);
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -59,7 +106,7 @@ export default function SignUp() {
 				<Typography component="h1" variant="h5">
 					플갤러 인증받기
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form onSumbmit={onSubmit} className={classes.form} noValidate>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<TextField
